@@ -2,14 +2,19 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-// import SignInIcon from "@material-ui/icons/AccountBox";
 import { NavLink } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
+/**
+ * HomeHeader component represents the header for the home page.
+ * @param {Object} props - Component properties.
+ * @returns {JSX.Element} - HomeHeader component.
+ */
 export default function HomeHeader(props) {
   return (
     <AppBar style={{ backgroundColor: "#014421" }} position="relative">
       <Toolbar>
+        {/* Logo and Title */}
         <div
           style={{
             flex: 1,
@@ -19,6 +24,7 @@ export default function HomeHeader(props) {
             flexDirection: "row",
           }}
         >
+          {/* Uncomment the code below to include a logo */}
           {/* <div
             style={{
               borderRadius: 2,
@@ -31,6 +37,7 @@ export default function HomeHeader(props) {
               src={require("../../images/logo/logo.png")}
             />
           </div> */}
+          {/* Home Button with Logo and Title */}
           <Button
             variant="outlined"
             style={{
@@ -51,6 +58,7 @@ export default function HomeHeader(props) {
               }}
             >
               EleWatch
+              {/* Beta Version Indicator */}
               <Typography
                 variant="body1"
                 color="inherit"
@@ -61,7 +69,8 @@ export default function HomeHeader(props) {
             </Typography>
           </Button>
         </div>
-        {/* <SignInIcon /> */}
+
+        {/* Sign In Button */}
         <Button
           variant="outlined"
           color="inherit"

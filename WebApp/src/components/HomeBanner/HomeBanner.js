@@ -4,44 +4,51 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles(theme => ({
+import CoverImage from "../../images/banner.jpeg"; // Import the banner image
+
+const useStyles = makeStyles((theme) => ({
+  // Styles for different components
   icon: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   cover: {
-    width: "100%"
+    width: "100%",
     // height: 300,
     // backgroundImage: `url(${Cover})`
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: 10,
-    width: "100%"
+    width: "100%",
   },
   heroButtons: {
-    marginTop: theme.spacing(4)
+    marginTop: theme.spacing(4),
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
+    paddingBottom: theme.spacing(8),
   },
   card: {
     height: "100%",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: "56.25%" // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
-  }
+    padding: theme.spacing(6),
+  },
 }));
 
+/**
+ * HomeBanner component renders a banner with text content and buttons.
+ * @param {Object} props - Component properties.
+ */
 export default function HomeBanner(props) {
   const classes = useStyles();
 
@@ -53,12 +60,13 @@ export default function HomeBanner(props) {
         height: 600,
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: `url(${require("../../images/banner.jpeg")})`,
+        backgroundImage: `url(${CoverImage})`, // Use the imported image
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "no-repeat",
       }}
     >
+      {/* Left side content */}
       <Grid
         item
         xs={12}
@@ -69,9 +77,10 @@ export default function HomeBanner(props) {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          height: "100%"
+          height: "100%",
         }}
       >
+        {/* Heading */}
         <Typography
           component="h2"
           variant="h2"
@@ -81,6 +90,7 @@ export default function HomeBanner(props) {
         >
           What is Ele Watch?
         </Typography>
+        {/* Description */}
         <Typography
           variant="body1"
           align="left"
@@ -89,7 +99,7 @@ export default function HomeBanner(props) {
           style={{
             fontSize: 22,
             color: "white",
-            fontFamily: "Montserrat-Regular"
+            fontFamily: "Montserrat-Regular",
           }}
         >
           Welcome to the EleWatch platform. We are collecting a lot of elephants
@@ -97,6 +107,7 @@ export default function HomeBanner(props) {
           using the mobile app. These data will be used for elephant
           conservation purposes.
         </Typography>
+        {/* Buttons */}
         <Grid container spacing={2}>
           <Grid item>
             <Button
@@ -119,6 +130,7 @@ export default function HomeBanner(props) {
           </Grid>
         </Grid>
       </Grid>
+      {/* Right side content */}
       <Grid
         item
         xs={12}
@@ -127,9 +139,10 @@ export default function HomeBanner(props) {
         style={{
           padding: 100,
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
+        {/* Logo */}
         <img
           alt="logo"
           className={classes.icon}
