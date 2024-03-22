@@ -8,35 +8,33 @@ import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { red } from "@material-ui/core/colors";
-const useStyles = makeStyles(theme => ({
+
+const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 300
+    maxWidth: 300,
   },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-    width: 300
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
+    width: 300,
   },
   avatar: {
-    backgroundColor: red[500]
-  }
+    backgroundColor: red[500],
+  },
 }));
 
-export default function ReviewCard(props) {
+export default function ReviewCard({
+  userPhoto,
+  user,
+  time,
+  obPhoto,
+  index,
+  parentCallback,
+}) {
   const classes = useStyles();
 
-  const handleClickOpen = id => {
-    props.parentCallback([true, id]);
+  const handleClickOpen = () => {
+    parentCallback([true, index]);
   };
 
   return (
@@ -46,20 +44,16 @@ export default function ReviewCard(props) {
           <Avatar
             aria-label="recipe"
             className={classes.avatar}
-            src={props.userPhoto}
+            src={userPhoto}
           />
         }
-        title={props.user}
-        subheader={props.time}
+        title={user}
+        subheader={time}
       />
-      <CardMedia
-        className={classes.media}
-        image={props.obPhoto}
-        title={props.user}
-      />
+      <CardMedia className={classes.media} image={obPhoto} title={user} />
       <CardContent>
         <Button
-          onClick={() => handleClickOpen(props.index)}
+          onClick={handleClickOpen}
           variant="outlined"
           color="primary"
         >

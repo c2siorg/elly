@@ -4,10 +4,6 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-// import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-// import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-// import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,8 +14,8 @@ import {
 import Pending from "../../containers/pending/Pending";
 import Approved from "../../containers/Approved/Approved";
 import Rejected from "../../containers/Rejected/Rejected";
-// import AdminDiscover from "../../containers/AdminMap/AdminMap";
 import "./SideBar.css";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,34 +28,8 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     marginTop: -8,
   },
-
   root: {
     display: "flex",
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  hide: {
-    display: "none",
-  },
-
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: "hidden",
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1,
-    },
   },
   toolbar: {
     display: "flex",
@@ -68,115 +38,63 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
 }));
 
 const routes = [
   {
     path: "/home/approved",
-    sidebar: () => <div></div>,
     main: () => <Approved />,
   },
   {
     path: "/home/pending",
-    sidebar: () => <div></div>,
     main: () => <Pending />,
   },
   {
     path: "/home/rejected",
-    sidebar: () => <div></div>,
     main: () => <Rejected />,
   },
-  // {
-  //   path: "/home/map",
-  //   sidebar: () => <div></div>,
-  //   main: () => <AdminDiscover />,
-  // },
 ];
 
 export const SideBar = () => {
   const classes = useStyles();
+  
   return (
     <Router>
-      <div style={{ display: "flex" }}>
-        <div>
-          <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <div className={classes.toolbar} />
-            <List>
-              <ListItem
-                className="sidebar"
-                button
-                component={NavLink}
-                to={"/home/approved"}
-                selected={false}
-                key={1}
-              >
-                {/* <ListItemIcon>
-                  <ThumbUpIcon />
-                </ListItemIcon> */}
-                <ListItemText primary={"Dashboard"} />
-              </ListItem>
-              <ListItem
-                className="sidebar"
-                button
-                component={NavLink}
-                to={"/home/pending"}
-                key={2}
-              >
-                {/* <ListItemIcon>
-                  <HourglassEmptyIcon />
-                </ListItemIcon> */}
-                <ListItemText primary={"Pending"} />
-              </ListItem>
-              <ListItem
-                className="sidebar"
-                button
-                component={NavLink}
-                to={"/home/rejected"}
-                key={3}
-              >
-                {/* <ListItemIcon>
-                  <ThumbDownIcon />
-                </ListItemIcon> */}
-                <ListItemText primary={"Rejected"} />
-              </ListItem>
-              {/* <ListItem button component={NavLink} to={"/home/map"} key={4}>
-                <ListItemIcon>
-                  <ThumbDownIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Map"} />
-              </ListItem> */}
-            </List>
-          </Drawer>
-
-          <Switch>
+      <div className={classes.root}>
+        {/* Sidebar */}
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.toolbar} />
+          <List>
+            {/* Sidebar List Items */}
             {routes.map((route, index) => (
-              <Route
+              <ListItem
+                className="sidebar"
+                button
+                component={NavLink}
+                to={route.path}
                 key={index}
-                path={route.path}
-                exact={route.exact}
-                children={<route.sidebar />}
-              />
+              >
+                <ListItemText primary={route.path.replace("/home/", "")} />
+              </ListItem>
             ))}
-          </Switch>
-        </div>
+          </List>
+        </Drawer>
 
+        {/* Main Content Area */}
         <div style={{ flex: 1, padding: "10px" }}>
           <Switch>
+            {/* Routes */}
             {routes.map((route, index) => (
               <Route
                 key={index}
                 path={route.path}
-                exact={route.exact}
+                exact
                 children={<route.main />}
               />
             ))}

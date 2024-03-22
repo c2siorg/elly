@@ -4,16 +4,19 @@ import Grid from "@material-ui/core/Grid";
 import ReactLoading from "react-loading";
 import Swal from "sweetalert2";
 
+/**
+ * MapContainer component displays a Google Map with markers.
+ * @class
+ */
 export class MapContainer extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
+  /**
+   * Display markers on the map for each incident.
+   * @returns {JSX.Element[]} - Array of Marker components.
+   */
   displayMarkers = () => {
     return this.props.data.map((store, index) => {
-      console.log(store);
       const cord = store.location;
-      console.log(cord);
+
       return (
         <Marker
           key={index}
@@ -33,7 +36,7 @@ export class MapContainer extends Component {
           <InfoWindow visible={true}>
             <div>
               <p>
-                Click on the map or drag the marker to select location where the
+                Click on the map or drag the marker to select the location where the
                 incident occurred
               </p>
             </div>
@@ -43,6 +46,10 @@ export class MapContainer extends Component {
     });
   };
 
+  /**
+   * Render method for the MapContainer component.
+   * @returns {JSX.Element} - Rendered MapContainer component.
+   */
   render() {
     return (
       <Grid
@@ -65,7 +72,6 @@ export class MapContainer extends Component {
               lng: 78.0,
             }}
             gestureHandling="cooperative"
-            // center={this.initCord}
             style={{ overflow: "y" }}
           >
             {this.displayMarkers()}
@@ -87,6 +93,7 @@ export class MapContainer extends Component {
   }
 }
 
+// Export the MapContainer component with Google Maps API key
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAzZ0St9RVLUhRW9m6I9A-ULfWmjbycX5g",
+  apiKey: "YOUR_GOOGLE_MAPS_API_KEY",
 })(MapContainer);

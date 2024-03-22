@@ -7,10 +7,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import firebase from "firebase/app";
 
+/**
+ * HomeObservationTitle component displays recent user observations with a carousel.
+ * @param {Object} props - Component properties.
+ * @returns {JSX.Element} - HomeObservationTitle component.
+ */
 export default function HomeObservationTitle(props) {
-  const [observations, setObservation] = useState([]);
+  const [observations, setObservations] = useState([]);
 
   useEffect(() => {
+    // Fetch recent verified observations from the database
     firebase
       .database()
       .ref("usersObservations")
@@ -24,8 +30,8 @@ export default function HomeObservationTitle(props) {
         for (let i in result) {
           out.push({ legend: result[i].uname, img: result[i].rphotos });
         }
-        out.reverse();
-        setObservation(out);
+        out.reverse(); // Reverse the order to display recent observations first
+        setObservations(out);
       });
   }, []);
 
@@ -38,17 +44,14 @@ export default function HomeObservationTitle(props) {
         alignItems: "center",
       }}
     >
+      {/* Carousel to display recent observations */}
       <Grid item xs={12} sm={6} md={6} lg={6}>
-        {/* <img
-          alt="logo"
-          style={{ width: 500, height: 300, borderBottomLeftRadius: 100 }}
-          src={require("../../images/banner.jpeg")}
-        /> */}
         <div style={{ padding: 10 }}>
           <Carousel>
             {observations.map((val, i) => (
               <div key={i}>
-                <img src={val.img} />
+                <img src={val.img} alt={`Observation ${i}`} />
+                {/* Uncomment the line below to display legend */}
                 {/* <p className="legend">Captured by {val.legend}</p> */}
               </div>
             ))}
@@ -56,6 +59,7 @@ export default function HomeObservationTitle(props) {
         </div>
       </Grid>
       <Grid item xs={12} sm={6} md={6} justify="center">
+        {/* Heading */}
         <Typography
           component="h2"
           variant="h2"
@@ -65,6 +69,7 @@ export default function HomeObservationTitle(props) {
         >
           User Observations
         </Typography>
+        {/* Description */}
         <Typography
           variant="body1"
           align="left"
@@ -82,6 +87,7 @@ export default function HomeObservationTitle(props) {
           observations uploaded by users.
         </Typography>
 
+        {/* Button to view all observations (optional) */}
         {/* <Button
           variant="contained"
           color="inherit"

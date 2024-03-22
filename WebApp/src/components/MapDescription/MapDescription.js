@@ -4,6 +4,11 @@ import Typography from "@material-ui/core/Typography";
 import { NavLink } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
+/**
+ * HomeMap component displays information about finding locations.
+ * @param {Object} props - Component properties.
+ * @returns {JSX.Element} - HomeMap component.
+ */
 export default function HomeMap(props) {
   return (
     <Grid
@@ -18,9 +23,9 @@ export default function HomeMap(props) {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat"
-        // backgroundColor: "#B5651E"
       }}
     >
+      {/* Left side content */}
       <Grid
         item
         xs={12}
@@ -33,6 +38,7 @@ export default function HomeMap(props) {
           alignItems: "center"
         }}
       >
+        {/* Heading */}
         <Typography
           component="h2"
           variant="h2"
@@ -42,6 +48,7 @@ export default function HomeMap(props) {
         >
           Find Locations...
         </Typography>
+        {/* Description */}
         <Typography
           variant="body1"
           align="left"
@@ -53,11 +60,11 @@ export default function HomeMap(props) {
             fontFamily: "Montserrat-Regular"
           }}
         >
-          Each elephant's locations will collected at the time user captured the
-          elephants images. So those data can be used to track down the
-          elephants and tourists will be easily locate elephants with the usuall
-          time when elephants are arriving.
+          Each elephant's location is collected at the time the user captures the
+          elephant images. This data can be used to track down the
+          elephants, and tourists can easily locate elephants at usual times.
         </Typography>
+        {/* Button */}
         <Button
           variant="contained"
           color="inherit"
@@ -67,6 +74,7 @@ export default function HomeMap(props) {
           Find more
         </Button>
       </Grid>
+      {/* Right side content (optional) */}
       <Grid
         item
         sm={12}
@@ -79,6 +87,7 @@ export default function HomeMap(props) {
           marginLeft: 20
         }}
       >
+        {/* Image (optional) */}
         {/* <img
           href="https://www.scorelab.org"
           alt="SCoRe Lab"

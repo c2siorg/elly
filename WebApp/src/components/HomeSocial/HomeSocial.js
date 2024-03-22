@@ -1,8 +1,12 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-// import { Button } from "@material-ui/core";
 
+/**
+ * HomeSocial component displays information about the organizations involved.
+ * @param {Object} props - Component properties.
+ * @returns {JSX.Element} - HomeSocial component.
+ */
 export default function HomeSocial(props) {
   return (
     <Grid
@@ -15,7 +19,7 @@ export default function HomeSocial(props) {
         backgroundColor: "white",
       }}
     >
-      {" "}
+      {/* Images and description */}
       <Grid
         item
         xs={12}
@@ -31,10 +35,10 @@ export default function HomeSocial(props) {
           alignItems="center"
           style={{ width: "100%" }}
         >
-          {" "}
+          {/* Logo images */}
           <Grid item xs={12} sm={6} md={5}>
             <img
-              alt="logo"
+              alt="Trunks & Leaves Logo"
               style={{
                 width: 150,
                 height: 150,
@@ -44,14 +48,15 @@ export default function HomeSocial(props) {
           </Grid>
           <Grid item xs={12} sm={6} md={5}>
             <img
+              alt="SCoRe Lab Logo"
               href="https://www.scorelab.org"
-              alt="SCoRe Lab"
               style={{ width: 200, height: 150 }}
               src={require("../../images/score.jpg")}
             />
           </Grid>
         </Grid>
       </Grid>
+      {/* Organization description */}
       <Grid
         item
         xs={12}
@@ -72,6 +77,7 @@ export default function HomeSocial(props) {
         >
           Who are we?
         </Typography>
+        {/* Organization description */}
         <Typography
           variant="body1"
           align="left"
@@ -83,9 +89,9 @@ export default function HomeSocial(props) {
             fontFamily: "Montserrat-Regular",
           }}
         >
-          This platform is developing by the SCoRe Lab organization with the
-          collaboration of Trunks & Leaves organizations.
+          This platform is developed by the SCoRe Lab organization in collaboration with Trunks & Leaves organizations.
         </Typography>
+        {/* Buttons (optional) */}
         {/* <Button variant="outlined">find more about SCoRe Lab.</Button>
         <Button variant="outlined">find more about</Button> */}
       </Grid>

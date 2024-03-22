@@ -1,33 +1,43 @@
+// Importing necessary components from Material-UI library
 import React from "react";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
+import { Link as MaterialLink, Typography, Box } from "@material-ui/core";
 
-export default function Copyroght() {
+// Functional component for displaying copyright information
+const Copyright = () => {
+  // Styling for the container div
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#014421", // Background color
+    color: "white", // Text color
+    padding: 20, // Padding around the content
+    width: "100%", // Full width
+    height: "100%", // Full height
+  };
+
+  // Styling for the Typography component
+  const typographyStyle = {
+    color: "white", // Text color
+    fontFamily: "Montserrat-Regular", // Font family
+  };
+
+  // Render the copyright information using Material-UI components
   return (
-    <div
-      style={{
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#014421",
-        color: "white",
-        padding: 20,
-        width: "100%"
-      }}
-    >
-      <Typography
-        style={{ color: "white", fontFamily: "Montserrat-Regular" }}
-        variant="h6"
-        color="textSecondary"
-        align="center"
-      >
+    <Box style={containerStyle}>
+      <Typography variant="h6" color="textSecondary" align="center" style={typographyStyle}>
+        {/* Copyright text with a link to www.SCoReLab.org */}
         {"Copyright © "}
-        <Link color="inherit" href="https://www.scorelab.org">
+        <MaterialLink color="inherit" href="https://www.scorelab.org">
           www.SCoReLab.org
-        </Link>{" "}
+        </MaterialLink>{" "}
+        {/* Display the current year dynamically */}
         {new Date().getFullYear()}
         {"."}
       </Typography>
-    </div>
+    </Box>
   );
-}
+};
+
+// Export the Copyright component for use in other parts of the application
+export default Copyright;
